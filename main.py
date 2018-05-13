@@ -1,8 +1,9 @@
 import socket
+from views import *
 
 URLS = {
-	'/': 'hello index',
-	'/blog': 'hello blog'
+	'/': index,
+	'/blog': blog
 }
 
 def parse_request(request):
@@ -28,7 +29,7 @@ def generate_content(code, url):
 	if code == 405:
 		return '<h1> 405 </h1><p>Method not allowed<p>'
 
-	return '<h1> {} </h1>'.format(URLS[url])
+	return URLS[url]()
 
 
 def generate_response(request):
